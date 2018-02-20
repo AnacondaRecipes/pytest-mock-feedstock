@@ -23,7 +23,7 @@ requirements:
     - setuptools_scm
   run:
     - python
-    - pytest
+    - pytest >=2.7
     - mock  # [py27]
 
 test:
