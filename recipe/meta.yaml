@@ -13,8 +13,9 @@ source:
   {{ hash_type }}: {{ hash }}
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
+  noarch: python
 
 requirements:
   host:
@@ -24,7 +25,7 @@ requirements:
   run:
     - python
     - pytest >=2.7
-    - mock  # [py27]
+    - mock
 
 test:
   source_files:
