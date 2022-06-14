@@ -18,24 +18,27 @@ build:
 
 requirements:
   build:
-    - python >=3.6
+    - python >=3.7
     - pip
     - setuptools_scm
   run:
-    - setuptools
-    - python >=3.6
+    - python >=3.7
     - pytest >=5.0
 
 test:
   requires:
     - pytest-asyncio
+    - pip
+    {% if version == "3.7.0" %}- pytest <7{% endif %}
+
   source_files:
     - tests
   imports:
     - pytest_mock
   commands:
+    - pip check
     - pytest --help
-    - pytest tests
+    - pytest -vv tests
 
 about:
   home: https://github.com/pytest-dev/pytest-mock
