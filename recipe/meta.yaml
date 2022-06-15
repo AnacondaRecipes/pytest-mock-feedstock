@@ -21,6 +21,8 @@ requirements:
     - python
     - pip
     - setuptools_scm
+    - setuptools
+    - wheel
   run:
     - python
     - pytest >=5.0
