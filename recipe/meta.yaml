@@ -14,15 +14,15 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  noarch: python
+  skip: True  # [py<36]
 
 requirements:
   host:
-    - python >=3.7
+    - python
     - pip
     - setuptools_scm
   run:
-    - python >=3.7
+    - python
     - pytest >=5.0
 
 test:
