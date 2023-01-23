@@ -1,6 +1,6 @@
 {% set name = "pytest-mock" %}
-{% set version = "3.7.0" %}
-{% set hash = "5112bd92cc9f186ee96e1a92efc84969ea494939c3aead39c50f421c4cc69534" %}
+{% set version = "3.10.0" %}
+{% set hash = "fbbdb085ef7c252a326fd8cdcac0aa3b1333d8811f131bdcc701002e1be7ed4f" %}
 
 package:
   name: {{ name }}
@@ -14,7 +14,7 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: True  # [py<36]
+  skip: True  # [py<37]
 
 requirements:
   host:
@@ -31,7 +31,6 @@ test:
   requires:
     - pytest-asyncio
     - pip
-    {% if version == "3.7.0" %}- pytest <7{% endif %}
 
   source_files:
     - tests
@@ -49,7 +48,7 @@ about:
   license_file: LICENSE
   summary: Thin-wrapper around the mock package for easier use with py.test
   dev_url: https://github.com/pytest-dev/pytest-mock
-  doc_url: https://pytest-mock.readthedocs.io/en/latest/
+  doc_url: https://pytest-mock.readthedocs.io
 
 extra:
   recipe-maintainers:
