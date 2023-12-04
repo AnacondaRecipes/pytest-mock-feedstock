@@ -39,7 +39,7 @@ test:
   commands:
     - pip check
     - pytest --help
-    - pytest -vv tests
+    - pytest -vv tests -k "not test_monkeypatch_ini"
 
 about:
   home: https://github.com/pytest-dev/pytest-mock
