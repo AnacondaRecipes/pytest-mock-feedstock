@@ -36,6 +36,8 @@ test:
   requires:
     - pytest-asyncio
     - pip
+    # py for py.code in test_monkeypatch_ini
+    - py
   source_files:
     - tests
   imports:
@@ -45,7 +47,7 @@ test:
     # check that pip gets the correct version 
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - pytest --help
-    - pytest -vv tests -k "not test_monkeypatch_ini"
+    - pytest -vv tests
 
 about:
   home: https://github.com/pytest-dev/pytest-mock
