@@ -10,13 +10,18 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ hash }}
+  patches:
+    - patches/0001-update-expected-message-to-match.patch
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   skip: True  # [py<37]
 
 requirements:
+  build:
+    - patch     # [not win]
+    - m2-patch  # [win]
   host:
     - python
     - pip
@@ -31,13 +36,14 @@ test:
   requires:
     - pytest-asyncio
     - pip
-
   source_files:
     - tests
   imports:
     - pytest_mock
   commands:
     - pip check
+    # check that pip gets the correct version 
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - pytest --help
     - pytest -vv tests -k "not test_monkeypatch_ini"
 
