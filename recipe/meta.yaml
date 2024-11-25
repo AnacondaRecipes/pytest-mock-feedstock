@@ -53,6 +53,8 @@ about:
   license_family: MIT
   license_file: LICENSE
   summary: Thin-wrapper around the mock package for easier use with py.test
+  description: |
+    Thin-wrapper around the mock package for easier use with py.test
   dev_url: https://github.com/pytest-dev/pytest-mock
   doc_url: https://pytest-mock.readthedocs.io
 
