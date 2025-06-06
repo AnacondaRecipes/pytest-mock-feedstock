@@ -1,18 +1,18 @@
 {% set name = "pytest-mock" %}
-{% set version = "3.14.0" %}
+{% set version = "3.14.1" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2719255a1efeceadbc056d6bf3df3d1c5015530fb40cf347c0f9afac88410bd0
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pytest_mock-{{ version }}.tar.gz
+  sha256: 159e9edac4c451ce77a5cdb9fc5d1100708d2dd4ba3c3df572f14097351af80e
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  skip: True  # [py<38]
+  skip: true  # [py<38]
 
 requirements:
   host:
@@ -20,7 +20,7 @@ requirements:
     - pip
     - setuptools_scm
     - setuptools
-    - wheel
+    - setuptools-scm
   run:
     - python
     - pytest >=6.2.5
@@ -35,7 +35,7 @@ test:
     - pytest_mock
   commands:
     - pip check
-    # check that pip gets the correct version 
+    # check that pip gets the correct version
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - pytest --help
     - pytest -vv tests
