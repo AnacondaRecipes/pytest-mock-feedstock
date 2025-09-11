@@ -1,44 +1,46 @@
 {% set name = "pytest-mock" %}
-{% set version = "3.14.0" %}
+{% set version = "3.15.0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2719255a1efeceadbc056d6bf3df3d1c5015530fb40cf347c0f9afac88410bd0
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+  sha256: ab896bd190316b9d5d87b277569dfcdf718b2d049a2ccff5f7aca279c002a1cf
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  skip: True  # [py<38]
+  skip: True  # [py<39]
 
 requirements:
   host:
-    - python
     - pip
-    - setuptools_scm
-    - setuptools
+    - python
     - wheel
+    - setuptools
+    - setuptools_scm
+    - toml
   run:
     - python
-    - pytest >=6.2.5
+    # E   TypeError: assert_argument_introspection.<locals>.<lambda>() got an unexpected keyword argument 'lexer'
+    # Upper bound added
+    - pytest <8
 
 test:
-  requires:
-    - pytest-asyncio
-    - pip
   source_files:
     - tests
   imports:
     - pytest_mock
   commands:
     - pip check
-    # check that pip gets the correct version 
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - pytest --help
     - pytest -vv tests
+  requires:
+    - pytest-asyncio
+    - pip
 
 about:
   home: https://github.com/pytest-dev/pytest-mock
