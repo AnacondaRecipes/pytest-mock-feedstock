@@ -1,5 +1,6 @@
 {% set name = "pytest-mock" %}
 {% set version = "3.15.0" %}
+{{ brake to fail build }}
 
 package:
   name: {{ name }}
