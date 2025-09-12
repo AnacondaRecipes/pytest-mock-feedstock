@@ -26,7 +26,7 @@ requirements:
     - python
     # E   TypeError: assert_argument_introspection.<locals>.<lambda>() got an unexpected keyword argument 'lexer'
     # Upper bound added
-    - pytest <8
+    - pytest >=6.2.5,<8
 
 test:
   source_files:
