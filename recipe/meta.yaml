@@ -35,7 +35,9 @@ test:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - pytest --help
-    - pytest -vv tests
+    # Note running with -vv will cause the test to fail due to:
+    # https://github.com/pytest-dev/pytest-mock/issues/534
+    - pytest tests
   requires:
     - pytest-asyncio
     - pip
