@@ -1,26 +1,26 @@
 {% set name = "pytest-mock" %}
-{% set version = "3.15.0" %}
+{% set version = "3.15.1" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
-  sha256: ab896bd190316b9d5d87b277569dfcdf718b2d049a2ccff5f7aca279c002a1cf
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+  sha256: 1849a238f6f396da19762269de72cb1814ab44416fa73a8686deac10b0d87a0f
 
 build:
-  number: 1
+  number: 0
+  skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  skip: True  # [py<39]
 
 requirements:
   host:
     - pip
     - python
-    - wheel
     - setuptools
     - setuptools_scm
+    - wheel
     - toml
   run:
     - python
